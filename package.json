@@ -1,0 +1,36 @@
+{
+  "name": "afterclass_server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "prebuild-dev": "powershell -ExecutionPolicy Bypass -File ./scripts/fetch-types.ps1",
+    "dev": "nodemon dist/init.js",
+    "watch": "npm run prebuild-dev && npx tsc --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "type": "module",
+  "dependencies": {
+    "colorette": "^2.0.20",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.6",
+    "cron-jobs": "^1.0.3",
+    "dotenv": "^18.0.9",
+    "express": "^5.3.0",
+    "i": "^0.3.7",
+    "joi": "^18.3.0",
+    "npm": "^12.2.1"
+  },
+  "devDependencies": {
+    "@types/cookie-parser": "^1.4.10",
+    "@types/cors": "^2.8.19",
+    "@types/dotenv": "^6.1.1",
+    "@types/express": "^5.0.6",
+    "@types/joi": "^17.2.2",
+    "@types/node": "^26.6.5",
+    "nodemon": "^3.1.14",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  }
+}
