@@ -58,10 +58,12 @@ export class MainEngine {
         this.InitializeAllEngines()
 
         .then(() => {
+            this.Server.listen(SERVER_PORT, () => {
 
-            this.logger.log(`Server is listening on ${SERVER_PORT}`, "success")
+                this.logger.log(`Server is listening on ${SERVER_PORT}`, "success")
 
-            if(cb) cb()
+                if(cb) cb()
+            })
         })
     }
 }

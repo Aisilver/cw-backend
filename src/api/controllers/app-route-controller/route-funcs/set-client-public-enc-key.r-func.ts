@@ -1,15 +1,20 @@
 import type { Request, Response } from "express";
 import { ApiFailureResponse, ApiSuccessResponse } from "../../../../functions/api-response.func.js";
 import Joi from "joi";
+import type { ClientPublicKeyRegistrationRequest } from "@shared/routes/app-route/client-public-key-registration.type.js";
 
 export function APP_RF_setClientPublicEncryptionKey (req: Request, res: Response) {
     try {
         
-        const {public_key} = req.body as {public_key: string},
+        const {error, value} = Joi.object<ClientPublicKeyRegistrationRequest>({
+            clientId: Joi.string().required(),
 
-        {error} = Joi.string().required().validate(public_key)
+            publicKey: Joi.string().required()
+        }).validate(req.body)
 
         if(error) throw error
+
+        const {clientId, publicKey} = value
 
         // Continue
 

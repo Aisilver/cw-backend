@@ -3,10 +3,9 @@ import { RouteController } from "../../../abs-classes/route-controller/route-con
 class AuthenticationRouteController extends RouteController {
     protected routeBaseUri: string = "auth";
 
-    protected AfterRouteControllerInit?(): Promise<void> | void {
+    protected RegisterRoutes(): Promise<void> | void {
         
     }
-    
 }
 
 export const _AuthenticationRouteController = new AuthenticationRouteController("AuthRouteController")

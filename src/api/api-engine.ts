@@ -33,6 +33,8 @@ class ApiCarrierEngine extends CarrierEngine {
         this.app.use(express.json())
 
         this.app.use(cookieParser())
+
+        console.log(PRIMARY_FRONTEND_URL)
     }
 }
 

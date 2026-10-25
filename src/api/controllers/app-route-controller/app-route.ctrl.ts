@@ -5,12 +5,11 @@ import { APP_RF_setClientPublicEncryptionKey } from "./route-funcs/set-client-pu
 class AppRouteController extends RouteController {
     protected routeBaseUri: string = "app";
 
-    protected AfterRouteControllerInit?(): Promise<void> | void {
+    protected RegisterRoutes(): Promise<void> | void {
         this.Router.route("/ping").get((req, res) => res.json(ApiSuccessResponse("pong")))
 
         this.Router.route("/set-pub-key").post(APP_RF_setClientPublicEncryptionKey)
     }
-    
 }
 
 export const _AppRouteController = new AppRouteController("AppRouteController")
