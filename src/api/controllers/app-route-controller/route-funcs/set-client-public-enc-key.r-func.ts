@@ -15,7 +15,7 @@ export function APP_RF_setClientPublicEncryptionKey (req: Request, res: Response
         if(error) throw error
 
         const {clientId, publicKey} = value
-
+        
         // Continue
 
         res.json(ApiSuccessResponse())
