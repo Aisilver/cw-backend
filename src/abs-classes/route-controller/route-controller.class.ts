@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { Engine } from "../engine/engine.class.js";
-import { JWTMiddleWareHandler } from "../../middlewares/jwt.middleware.js";
+import { JWTMiddleWareHandler } from "../../api/middlewares/jwt.middleware.js";
 
 type MiddlwareOptions = {
     useJwtMiddleware?: boolean

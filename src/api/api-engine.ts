@@ -33,9 +33,7 @@ class ApiCarrierEngine extends CarrierEngine {
         this.app.use(express.json())
 
         this.app.use(cookieParser())
-
-        console.log(PRIMARY_FRONTEND_URL)
     }
 }
 
-export const _ApiCarrierEngine = new ApiCarrierEngine("ApiCarrierEngine")
+export const _ApiCarrierEngine = new ApiCarrierEngine("ApiCarrier")

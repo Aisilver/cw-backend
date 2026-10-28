@@ -1,22 +1,24 @@
 import type { Request, Response } from "express";
-import { ApiFailureResponse, ApiSuccessResponse } from "../../../../functions/api-response.func.js";
+import { ApiFailureResponse, ApiSuccessResponse } from "../../../functions/api-response.func.js";
 import Joi from "joi";
+import { _AuthService } from "../../../../services/auth.service.js";
 import type { ClientPublicKeyRegistrationRequest } from "@shared/routes/app-route/client-public-key-registration.type.js";
 
-export function APP_RF_setClientPublicEncryptionKey (req: Request, res: Response) {
+export async function APP_RF_setClientPublicEncryptionKey (req: Request, res: Response) {
     try {
+        const {CLIENT_ENCRYPTION_PUBLIC_KEYS} = _AuthService, 
         
-        const {error, value} = Joi.object<ClientPublicKeyRegistrationRequest>({
+        {error, value} = Joi.object<ClientPublicKeyRegistrationRequest>({
             clientId: Joi.string().required(),
 
             publicKey: Joi.string().required()
-        }).validate(req.body)
+        }).required().validate(req.body)
 
         if(error) throw error
 
         const {clientId, publicKey} = value
         
-        // Continue
+        await CLIENT_ENCRYPTION_PUBLIC_KEYS.set(publicKey, clientId)
 
         res.json(ApiSuccessResponse())
 

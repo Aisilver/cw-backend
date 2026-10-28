@@ -3,7 +3,6 @@ import express from "express"
 import http, { Server } from "http"
 import { Logger } from "../logger/logger.class.js";
 import { config } from "dotenv"
-import { ServerEnvValidator } from "../../functions/server-env-validator.func.js";
 
 config()
 
@@ -14,7 +13,9 @@ export class MainEngine {
 
     private Server: Server
 
-    private logger = new Logger("Server")
+    private logger = new Logger("MainServerEngine")
+
+    private declare errMessage: string
 
     constructor() {
         this.APP = express()
@@ -24,7 +25,7 @@ export class MainEngine {
 
     injectEngine = (engine: Engine) => this.engines.push(engine)
     
-    private async InitializeAllEngines () {
+    async InitializeAllEngines () {
         for (const engine of this.engines) {
 
             const {name} = engine
@@ -37,33 +38,27 @@ export class MainEngine {
                 this.logger.log(`[${name}] Engine has been initialized successfully`, 'success')
             } catch (error: any) {
                 
-                this.logger.log(`[${name}] Engine has exitted with an error: "${error.message}", Server has been haulted`, 'error')
+                this.errMessage = `[${name}] Engine has exitted with an error: "${error.message}", Server has been haulted`
                 
-                break
+                throw error
             }
         }
     }
 
+    LogError() {
+        this.logger.log(this.errMessage, 'error')
+    }
+
     Start (cb?: () => void) {
-        this.logger.log("Validating server enviroment variables")
-
-        ServerEnvValidator()
-
-        this.logger.log("Server enviroment variables validated", "success")
-
         const {SERVER_PORT} = process.env
 
         this.logger.log("Starting server..")
 
-        this.InitializeAllEngines()
+        this.Server.listen(SERVER_PORT, () => {
 
-        .then(() => {
-            this.Server.listen(SERVER_PORT, () => {
+            this.logger.log(`Server is listening on ${SERVER_PORT}`, "success")
 
-                this.logger.log(`Server is listening on ${SERVER_PORT}`, "success")
-
-                if(cb) cb()
-            })
+            if(cb) cb()
         })
-    }
+    }  
 }

@@ -3,16 +3,15 @@ import type { ApiResponse, RESPONSE_CODE_TYPES } from "@shared/common/api-respon
 export function ApiSuccessResponse<Data = unknown> (data?: Data): ApiResponse {
     return {
         data,
-        state: "succeeded",
-        code: null
+        state: "succeeded"
     }
 }
 
 export function ApiFailureResponse (message: string, code?: RESPONSE_CODE_TYPES): ApiResponse {
+    //@ts-ignore
     return {
         message,
-        data: undefined,
         state: "failed",
-        code: code ?? null
+        code
     }
 }

@@ -15,7 +15,7 @@ export abstract class Engine {
     declare name: string
 
     constructor (namespace: string) {
-        this.name = namespace
+        this.name = `${namespace} Engine`
 
         this.logger = new Logger(this.name)
     }
@@ -36,7 +36,7 @@ export abstract class Engine {
         if(this.AfterInit) await this.AfterInit()
     }
 
-    registerTask = (enginetask: EngineTask) => this.initTasks.push(enginetask)
+    registerInitTask = (enginetask: EngineTask) => this.initTasks.push(enginetask)
 
     private async InitTaskHandler () {
         for (const task of this.initTasks ?? []) {
@@ -50,7 +50,7 @@ export abstract class Engine {
 
                 this.logger.log(`[${name}] has executed succesfully`, 'success')
             } catch (error: any) {
-                if(priority !== "critical") throw error
+                if(priority == "critical") throw error
 
                 this.logger.log(`Failed to execute [${name}] cause "${error.message}" and has been overlooked`, 'warning')     
             }           
