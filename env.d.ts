@@ -21,7 +21,13 @@ declare global {
 
             //# REDIS
 
-            REDIS_URL: string
+            REDIS_URL: string;
+
+            //# DATABASE
+
+            MONGO_URL: string;
+
+            DATABASE: string;
         }
 
     }

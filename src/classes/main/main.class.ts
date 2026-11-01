@@ -11,7 +11,7 @@ export class MainEngine {
 
     private declare APP: any; 
 
-    private Server: Server
+    private Server: Server;
 
     private logger = new Logger("MainServerEngine")
 

@@ -1,5 +1,7 @@
 import { Engine } from "../abs-classes/engine/engine.class.js";
 import { _RedisManger } from "../classes/redis-manger/redis-manager.js";
+import { _CollectionsManager } from "../database/classes/collections-manager.class.js";
+import { _DatabaseManger } from "../database/classes/database-manager.class.js";
 import { _MainServerService } from "../services/server.service.js";
 import { BOOTSTRAP_FUNC_envVariblesValiation } from "./bootstrap-functions/env-variables-validation.btrsp.js";
 
@@ -16,6 +18,22 @@ class BootstrapEngine extends Engine {
             priority: "critical",
             async task(){
                 await _RedisManger.initializeRedis()
+            }
+        })
+
+        this.registerInitTask({
+            name: "database bootstrap",
+            priority: "critical",
+            async task() {
+                await _DatabaseManger.Initialize()
+            }
+        })
+
+        this.registerInitTask({
+            name: "collections initialization",
+            priority: "critical",
+            async task () {
+                await _CollectionsManager.InitializeCollections()
             }
         })
     }
