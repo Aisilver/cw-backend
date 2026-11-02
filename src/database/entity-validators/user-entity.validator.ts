@@ -21,7 +21,6 @@ class UserEntityValidator extends EntityValidator<UserEntity> {
         
         createdAt: Joi.date().optional()
     });
-    
 }
 
 export const _USER_ENTITY_VALIDATOR = new UserEntityValidator()

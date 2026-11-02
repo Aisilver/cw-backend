@@ -28,6 +28,10 @@ declare global {
             MONGO_URL: string;
 
             DATABASE: string;
+
+            // # EMAIL 
+
+            RESEND_API_KEY: string;
         }
 
     }

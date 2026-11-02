@@ -1,4 +1,4 @@
-import { CacheManager } from "../abs-classes/cache-manager/cache-manger.class.js";
+import { CacheManager } from "../abs-classes/cache-handler/cache-handler.class.js";
 import { TIME_CONSTANT } from "../constants/time-in-seconds.const.js";
 
 const { DAY } = TIME_CONSTANT

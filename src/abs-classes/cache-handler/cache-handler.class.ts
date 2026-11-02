@@ -1,4 +1,4 @@
-import { _RedisManger, type RedisManager } from "../../classes/redis-manger/redis-manager.js"
+import { _RedisManger, type RedisManager } from "../../classes/redis-manager/redis-manager.js"
 
 export abstract class CacheManager {
     private CacheClient: RedisManager

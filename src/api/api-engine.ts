@@ -5,6 +5,7 @@ import { CarrierEngine } from "../abs-classes/carrier-engine/carrier-engine.clas
 import { _MainServerService } from "../services/server.service.js";
 import { _AppRouteController } from "./controllers/app-route-controller/app-route.ctrl.js";
 import { _AuthenticationRouteController } from "./controllers/auth-route-controller/auth-route.ctrl.js";
+import { _WebHookRouteController } from "./controllers/web-hook-route-controller/webhook-route.ctrl.js";
 
 
 class ApiCarrierEngine extends CarrierEngine {
@@ -12,6 +13,8 @@ class ApiCarrierEngine extends CarrierEngine {
         this.implementPrimaryMiddlewares()
 
         this.injectEngine(_AppRouteController)
+
+        this.injectEngine(_WebHookRouteController)
 
         this.injectEngine(_AuthenticationRouteController)
     }

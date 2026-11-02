@@ -19,7 +19,13 @@ export function BOOTSTRAP_FUNC_envVariblesValiation () {
 
         REFRESH_TOKEN_SECRET_KEY: Joi.string().required(),
 
-        REDIS_URL: Joi.string().required()
+        REDIS_URL: Joi.string().required(),
+
+        DATABASE: Joi.string().required(),
+
+        MONGO_URL: Joi.string().required(),
+
+        RESEND_API_KEY: Joi.string().required()
     })
     .unknown(true)
 
