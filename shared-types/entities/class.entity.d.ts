@@ -1,6 +1,6 @@
 export type ProductTypes = "lesson" | "activity"
 
-export interface ProductEntity {
+export interface Class {
     name: string;
     type: ProductTypes;
     price: number;

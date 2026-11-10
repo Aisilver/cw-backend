@@ -1,6 +1,6 @@
 import { EntityBase } from "./common";
 
-export interface StudentEntity extends EntityBase {
+export interface Student extends EntityBase {
     userId: string;
     parentId?: string;
 }

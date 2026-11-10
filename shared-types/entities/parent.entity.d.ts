@@ -1,5 +1,5 @@
 import { EntityBase } from "./common";
 
-export interface ParentEntity extends EntityBase {
+export interface Parent extends EntityBase {
     userId: string;
 }

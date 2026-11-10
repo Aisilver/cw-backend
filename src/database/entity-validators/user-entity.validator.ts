@@ -1,10 +1,10 @@
 import Joi from "joi";
 import { EntityValidator } from "../../abs-classes/entity-validator/entity-validator.class.js";
 import type { EntityBase } from "@shared/entities/common/entity-base.js";
-import type { UserEntity } from "@shared/entities/user.entity.js";
+import type { User } from "@shared/entities/user.entity.js";
 
-class UserEntityValidator extends EntityValidator<UserEntity> {
-    protected schemaValidationObj: Joi.ObjectSchema<UserEntity & EntityBase> = Joi.object({
+class UserEntityValidator extends EntityValidator<User> {
+    protected schemaValidationObj: Joi.ObjectSchema<User & EntityBase> = Joi.object({
         _id: Joi.string().optional(),
         
         firstName: Joi.string().required(),
