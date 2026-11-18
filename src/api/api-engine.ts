@@ -6,6 +6,7 @@ import { _MainServerService } from "../services/server.service.js";
 import { _AppRouteController } from "./controllers/app-route-controller/app-route.ctrl.js";
 import { _AuthenticationRouteController } from "./controllers/auth-route-controller/auth-route.ctrl.js";
 import { _WebHookRouteController } from "./controllers/web-hook-route-controller/webhook-route.ctrl.js";
+import { _MediaRouteController } from "./controllers/media-route-controller/media-route.ctrl.js";
 
 
 class ApiCarrierEngine extends CarrierEngine {
@@ -17,6 +18,8 @@ class ApiCarrierEngine extends CarrierEngine {
         this.injectEngine(_WebHookRouteController)
 
         this.injectEngine(_AuthenticationRouteController)
+
+        this.injectEngine(_MediaRouteController)
     }
 
     private implementPrimaryMiddlewares () {

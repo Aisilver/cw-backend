@@ -13,7 +13,7 @@ class UserEntityValidator extends EntityValidator<User> {
         
         middleName: Joi.string().optional(),
         
-        email: Joi.string().optional(),
+        accountId: Joi.string().optional(),
         
         maritalStatus: Joi.string().allow([ "married" , "single"]).required(),
         

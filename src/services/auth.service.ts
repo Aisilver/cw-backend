@@ -7,9 +7,9 @@ class AuthService extends CacheManager {
 
     protected namespace: string = "auth";
 
-    ONLINE_USERS = this.Collection<string>("online-users", DAY * 7)
+    ONLINE_USERS = this.SingleKeyCollection<string>("online-users", DAY * 7)
 
-    CLIENT_ENCRYPTION_PUBLIC_KEYS = this.SingleItem<string>("client-enc-pub-keys", DAY)
+    CLIENT_ENCRYPTION_PUBLIC_KEYS = this.SingleKeyItem<string>("client-enc-pub-keys", DAY)
 }
 
 export const _AuthService = new AuthService()

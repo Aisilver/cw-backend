@@ -1,7 +1,9 @@
 import { Roles } from "../../common"
-import { User } from "../../entities"
+import { Account, User } from "../../entities"
 
 export type SignUpRequestData = {
     role: Roles,
-    user: User
+    user: User,
+    account: Account,
+    profileImageRef?: string
 }

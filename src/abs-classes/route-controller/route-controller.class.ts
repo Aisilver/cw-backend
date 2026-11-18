@@ -15,6 +15,8 @@ export abstract class RouteController extends Engine {
 
     protected AfterRouteControllerInit(): Promise<void> | void {}
 
+    protected BeforeRouteControllerInit(): Promise<void> | void {}
+
     protected abstract RegisterRoutes(): Promise<void> | void
 
     constructor(namespace: string, midwareOpts?: MiddlwareOptions) {
@@ -23,7 +25,9 @@ export abstract class RouteController extends Engine {
         this.middlewareOptions = midwareOpts ?? {}
     }
 
-    BeforeInit(): Promise<void> | void {
+    async BeforeInit(): Promise<void> {
+        await this.BeforeRouteControllerInit()
+
         if(this.middlewareOptions.useJwtMiddleware) this.Router.use(JWTMiddleWareHandler)
 
         this.RegisterRoutes()
@@ -32,6 +36,6 @@ export abstract class RouteController extends Engine {
     AfterInit(): Promise<void> | void {
         this.app.use(`/${this.routeBaseUri}`, this.Router)
 
-        if(this.AfterRouteControllerInit) this.AfterRouteControllerInit()
+        this.AfterRouteControllerInit()
     }
 }

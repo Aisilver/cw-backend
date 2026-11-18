@@ -27,7 +27,7 @@ export abstract class CacheManager {
 
     private deleteItem = async (key: string) => await this.REDIS.del(key)
 
-    protected SingleItem <Item> (primaryKey: string, ttl: number) {
+    protected SingleKeyItem <Item> (primaryKey: string, ttl: number) {
         const itemBaseKey = this.CacheClient.makeGroupedKey(this.namespace, primaryKey),
 
         keyExtParser = (keyExtension?: string) => keyExtension ? this.CacheClient.makeGroupedKey(itemBaseKey, keyExtension) : itemBaseKey
@@ -41,7 +41,7 @@ export abstract class CacheManager {
         }
     }
 
-    protected Collection <Item>(collection_cache_key_name: string, ttl: number) {
+    protected SingleKeyCollection <Item>(collection_cache_key_name: string, ttl: number) {
         
         const collection_key = this.CacheClient.makeGroupedKey(this.namespace, collection_cache_key_name)
 
